@@ -1,0 +1,70 @@
+    // Three.js: partícula decorativa com fallback automático para a ilustração CSS.
+    try {
+      let THREE; try { ({ default: THREE } = await import('https://unpkg.com/three@0.170.0/build/three.module.js')); } catch { ({ default: THREE } = await import('https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js')); }
+      // Camadas 2D desenhadas em CanvasTexture e animadas como planos no Three.js.
+      const ingredientHost = document.querySelector('#ingredient-canvas');
+      const ingredientRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      ingredientRenderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); ingredientRenderer.setSize(ingredientHost.clientWidth, ingredientHost.clientHeight); ingredientRenderer.domElement.setAttribute('aria-hidden', 'true'); ingredientHost.append(ingredientRenderer.domElement);
+      const ingredientScene = new THREE.Scene(), ingredientCamera = new THREE.OrthographicCamera(-4, 4, 3, -3, .1, 30); ingredientCamera.position.z = 10;
+      const layerSpecs = [
+        { name: 'Pão de baixo', y: -1.48, type: 'bunBottom', at: 0 },
+        { name: 'Carne ao ponto', y: -.92, type: 'patty', at: .14 },
+        { name: 'Queijo derretido', y: -.48, type: 'cheese', at: .29 },
+        { name: 'Alface fresca', y: -.04, type: 'lettuce', at: .44 },
+        { name: 'Tomate fresco', y: .36, type: 'tomato', at: .58 },
+        { name: 'Molho da casa', y: .68, type: 'sauce', at: .72 },
+        { name: 'Pão artesanal', y: 1.05, type: 'bunTop', at: .84 }
+      ];
+      function ingredientTexture(type) {
+        const c = document.createElement('canvas'); c.width = 800; c.height = 190; const x = c.getContext('2d');
+        const path = (points, color) => { x.beginPath(); x.moveTo(points[0][0], points[0][1]); for (let i = 1; i < points.length; i++)x.lineTo(points[i][0], points[i][1]); x.closePath(); x.fillStyle = color; x.fill(); };
+        x.shadowColor = '#170d08aa'; x.shadowBlur = 16; x.shadowOffsetY = 12;
+        if (type === 'bunBottom') { x.beginPath(); x.roundRect(105, 56, 590, 88, 42); x.fillStyle = '#c47a3d'; x.fill(); x.fillStyle = '#e7b36c'; x.fillRect(126, 58, 548, 23); }
+        if (type === 'patty') { x.beginPath(); x.roundRect(125, 51, 550, 88, 38); x.fillStyle = '#512719'; x.fill(); x.fillStyle = '#9b5432'; x.beginPath(); x.roundRect(145, 51, 510, 30, 15); x.fill(); x.shadowBlur = 0; for (let i = 0; i < 18; i++) { x.fillStyle = i % 2 ? '#d19058' : '#3a1b13'; x.beginPath(); x.ellipse(165 + (i * 71) % 470, 65 + (i * 37) % 64, 5 + (i % 3), 2, ((i % 5) - 2) * .15, 0, Math.PI * 2); x.fill(); } }
+        if (type === 'cheese') { path([[150, 55], [646, 55], [615, 115], [552, 133], [515, 108], [455, 138], [398, 111], [334, 133], [280, 108], [210, 130]], '#f5bb37'); x.fillStyle = '#ffd968'; x.fillRect(175, 57, 435, 13); }
+        if (type === 'lettuce') { path([[132, 83], [176, 54], [219, 75], [267, 45], [313, 72], [366, 46], [415, 74], [466, 46], [512, 74], [560, 47], [611, 76], [665, 55], [690, 112], [635, 129], [582, 113], [528, 135], [470, 112], [412, 136], [353, 113], [296, 135], [238, 113], [178, 131]], '#679642'); path([[165, 88], [211, 69], [250, 87], [299, 65], [342, 87], [388, 66], [433, 90], [481, 67], [526, 89], [573, 68], [638, 87], [625, 99], [573, 87], [526, 105], [481, 85], [433, 106], [388, 84], [342, 105], [299, 83], [250, 105], [211, 86]], '#9bc75b'); }
+        if (type === 'tomato') { x.fillStyle = '#ce4932'; for (const px of [250, 400, 550]) { x.beginPath(); x.ellipse(px, 96, 73, 36, 0, 0, Math.PI * 2); x.fill(); x.strokeStyle = '#f17b4d'; x.lineWidth = 7; x.stroke(); x.fillStyle = '#f5b08b'; for (let j = 0; j < 5; j++) { x.beginPath(); x.ellipse(px + (j - 2) * 17, 96 + (j % 2 ? 8 : -7), 5, 3, 0, 0, Math.PI * 2); x.fill(); } } }
+        if (type === 'sauce') { x.shadowBlur = 0; x.strokeStyle = '#ff7138'; x.lineWidth = 18; x.lineCap = 'round'; x.beginPath(); x.moveTo(175, 112); x.bezierCurveTo(260, 55, 320, 150, 400, 95); x.bezierCurveTo(485, 42, 540, 137, 625, 83); x.stroke(); x.strokeStyle = '#ffc07a'; x.lineWidth = 5; x.beginPath(); x.moveTo(185, 106); x.bezierCurveTo(260, 62, 320, 144, 400, 91); x.bezierCurveTo(485, 50, 540, 130, 615, 82); x.stroke(); }
+        if (type === 'bunTop') { x.beginPath(); x.moveTo(120, 139); x.bezierCurveTo(120, 34, 210, 18, 400, 18); x.bezierCurveTo(590, 18, 680, 34, 680, 139); x.quadraticCurveTo(400, 168, 120, 139); x.fillStyle = '#d9944c'; x.fill(); x.beginPath(); x.moveTo(145, 126); x.bezierCurveTo(155, 53, 230, 39, 400, 39); x.bezierCurveTo(570, 39, 645, 53, 655, 126); x.quadraticCurveTo(400, 150, 145, 126); x.fillStyle = '#edb768'; x.fill(); x.shadowBlur = 0; x.fillStyle = '#f9dda1'; for (let i = 0; i < 15; i++) { const px = 230 + (i * 53) % 340, py = 66 + (i % 4) * 12; x.beginPath(); x.ellipse(px, py, 4, 9, -.5, 0, Math.PI * 2); x.fill(); } }
+        const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; return tex;
+      }
+      const ingredientSprites = layerSpecs.map((layer, index) => { const material = new THREE.SpriteMaterial({ map: ingredientTexture(layer.type), transparent: true, opacity: 0 }); const sprite = new THREE.Sprite(material); sprite.visible = false; sprite.scale.set(5.8, 1.38, 1); sprite.position.set(index % 2 ? -.12 : .12, layer.y + 2.8, 0); sprite.userData = { targetY: layer.y, index, at: layer.at }; ingredientScene.add(sprite); return sprite; });
+      function pixelTexture(kind) {
+        const canvas = document.createElement('canvas'); canvas.width = 16; canvas.height = 16; const ctx = canvas.getContext('2d'); ctx.imageSmoothingEnabled = false;
+        const p = (x, y, w, h, color) => { ctx.fillStyle = color; ctx.fillRect(x, y, w, h); };
+        if (kind === 'burger') { p(5, 1, 6, 1, '#f5cb79'); p(3, 2, 10, 2, '#dfa04e'); p(2, 4, 12, 2, '#f1bd63'); p(3, 6, 10, 1, '#72a84d'); p(2, 7, 12, 1, '#9dcc59'); p(3, 8, 10, 2, '#683521'); p(4, 10, 8, 1, '#ffd34d'); p(3, 11, 10, 2, '#bd7138'); p(5, 2, 1, 1, '#fff0b2'); p(9, 3, 1, 1, '#fff0b2'); }
+        if (kind === 'lettuce') { p(7, 1, 2, 3, '#b8d96e'); p(5, 3, 6, 2, '#83b54d'); p(2, 5, 12, 2, '#9bc75b'); p(1, 7, 14, 2, '#679642'); p(3, 9, 10, 2, '#83b54d'); p(5, 11, 6, 2, '#a8cc5a'); p(7, 13, 2, 2, '#679642'); p(7, 6, 2, 7, '#d8e894'); }
+        if (kind === 'tomato') { p(6, 1, 4, 2, '#6f9c42'); p(4, 3, 8, 2, '#d84c36'); p(2, 5, 12, 6, '#e85c42'); p(4, 11, 8, 3, '#c63e31'); p(5, 5, 2, 2, '#ffb078'); p(9, 7, 2, 2, '#ffb078'); p(6, 10, 2, 1, '#ffb078'); }
+        if (kind === 'soda') { p(7, 0, 2, 3, '#f8e1ad'); p(8, 2, 1, 2, '#e94d35'); p(5, 4, 6, 1, '#fff0cf'); p(4, 5, 8, 2, '#db4934'); p(5, 7, 6, 6, '#ee6845'); p(6, 13, 4, 1, '#b93a30'); p(6, 8, 2, 1, '#ffd07a'); p(8, 10, 2, 1, '#ffd07a'); }
+        if (kind === 'pickle') { p(6, 1, 4, 2, '#8dbb4d'); p(4, 3, 8, 2, '#66993e'); p(3, 5, 10, 6, '#78a847'); p(4, 11, 8, 2, '#5d8936'); p(6, 13, 4, 2, '#91b94c'); p(5, 5, 1, 1, '#d2df81'); p(9, 7, 1, 1, '#d2df81'); p(6, 10, 1, 1, '#d2df81'); p(10, 11, 1, 1, '#d2df81'); }
+        if (kind === 'bread') { p(5, 1, 6, 1, '#f3cc80'); p(3, 2, 10, 2, '#d99b51'); p(2, 4, 12, 5, '#e9ad5b'); p(3, 9, 10, 3, '#d18a43'); p(4, 12, 8, 1, '#b97439'); p(5, 3, 1, 2, '#fff0bd'); p(9, 4, 1, 2, '#fff0bd'); }
+        const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace; texture.magFilter = THREE.NearestFilter; texture.minFilter = THREE.NearestFilter; texture.generateMipmaps = false; return texture;
+      }
+      const pixelSpecs = [{ kind: 'burger', x: -1, y: 2.3, at: .08 }, { kind: 'lettuce', x: 1, y: 2.3, at: .25 }, { kind: 'tomato', x: -1, y: .25, at: .42 }, { kind: 'soda', x: 1, y: .25, at: .59 }, { kind: 'pickle', x: -1, y: -2.42, at: .75 }, { kind: 'bread', x: 1, y: -2.42, at: .88 }];
+      const pixelSprites = pixelSpecs.map(spec => { const material = new THREE.SpriteMaterial({ map: pixelTexture(spec.kind), transparent: true, opacity: 0, depthTest: false }); const sprite = new THREE.Sprite(material); sprite.visible = false; sprite.renderOrder = 5; sprite.scale.set(.62, .62, 1); sprite.position.set(0, 0, 0); sprite.userData = { ...spec }; ingredientScene.add(sprite); return sprite; });
+      const ingredientSection = document.querySelector('.ingredient-section'), ingredientVisual = document.querySelector('.ingredient-visual'), fallbackLayers = [...document.querySelectorAll('.ingredient-fallback span')], reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let ingredientFrame = 0, scrollTicking = false, lastBuildProgress = -1;
+      function updateBuild() {
+        scrollTicking = false; const rect = ingredientSection.getBoundingClientRect(), travel = Math.max(1, ingredientSection.offsetHeight - innerHeight), progress = Math.max(0, Math.min(1, -rect.top / travel)); if (Math.abs(progress - lastBuildProgress) < .002) return; lastBuildProgress = progress; let nowActive = 0;
+        ingredientSprites.forEach((sprite, index) => { const layer = layerSpecs[index], raw = (progress - layer.at) / .12, t = reducedMotion ? (raw >= 1 ? 1 : 0) : Math.max(0, Math.min(1, raw)), eased = 1 - Math.pow(1 - t, 3); sprite.position.y = layer.y + 2.8 * (1 - eased); sprite.material.opacity = t; sprite.visible = t > 0; if (t > 0) nowActive = index; });
+        const fallbackOrder = [6, 5, 4, 3, 2, 1, 0]; fallbackLayers.forEach((element, index) => { const layer = layerSpecs[fallbackOrder[index]], raw = (progress - layer.at) / .12, t = reducedMotion ? (raw >= 1 ? 1 : 0) : Math.max(0, Math.min(1, raw)); element.style.opacity = t; element.style.transform = `translateY(${(1 - t) * -90}px) rotate(${(1 - t) * -4}deg)`; });
+        pixelSprites.forEach(sprite => { const raw = (progress - sprite.userData.at) / .1, t = reducedMotion ? (raw >= 1 ? 1 : 0) : Math.max(0, Math.min(1, raw)), ease = 1 - Math.pow(1 - t, 3), aspect = ingredientHost.clientWidth / Math.max(1, ingredientHost.clientHeight), edge = Math.max(2.1, Math.min(3.12, 3 * aspect - .4)), targetX = sprite.userData.x * edge; sprite.visible = t > 0; sprite.material.opacity = t; sprite.scale.set(.62 * ease, .62 * ease, 1); sprite.position.set(targetX + (Math.sign(targetX) || 1) * (1 - ease) * .45, sprite.userData.y + (1 - ease) * .35, .2); });
+        ingredientVisual.classList.toggle('is-final', progress >= .96); ingredientVisual.style.setProperty('--build-progress', progress); ingredientRenderer.render(ingredientScene, ingredientCamera);
+        document.querySelectorAll('.ingredient-list li').forEach((row, index) => row.classList.toggle('is-current', index === Math.min(4, nowActive)));
+      }
+      function requestBuildUpdate() { if (!scrollTicking) { scrollTicking = true; ingredientFrame = requestAnimationFrame(updateBuild); } }
+      addEventListener('scroll', requestBuildUpdate, { passive: true }); addEventListener('resize', requestBuildUpdate); requestBuildUpdate();
+      const ingredientResize = new ResizeObserver(() => { const width = ingredientHost.clientWidth, height = ingredientHost.clientHeight, aspect = width / height; ingredientRenderer.setSize(width, height); ingredientCamera.left = -3 * aspect; ingredientCamera.right = 3 * aspect; ingredientCamera.updateProjectionMatrix(); const burgerWidth = Math.max(4.7, Math.min(5.8, 5.8 * aspect / 1.15)); ingredientSprites.forEach(sprite => sprite.scale.x = burgerWidth); requestBuildUpdate(); }); ingredientResize.observe(ingredientHost);
+      const host = document.querySelector('.stage');
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 1.7)); renderer.setSize(host.clientWidth, host.clientHeight); renderer.domElement.setAttribute('aria-hidden', 'true'); renderer.domElement.style.pointerEvents = 'none'; host.prepend(renderer.domElement);
+      const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(38, host.clientWidth / host.clientHeight, .1, 100); camera.position.z = 8;
+      const geometry = new THREE.BufferGeometry(), positions = [];
+      for (let i = 0; i < 260; i++) { const a = Math.random() * Math.PI * 2, r = 2.1 + Math.random() * 1.3; positions.push(Math.cos(a) * r, (Math.random() - .5) * 3.5, Math.sin(a) * r * .5); }
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      const points = new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0xffb16b, size: .035, transparent: true, opacity: .68 })); scene.add(points);
+      let frame; const draw = () => { frame = requestAnimationFrame(draw); points.rotation.y += .0015; renderer.render(scene, camera); }; draw();
+      const resize = new ResizeObserver(() => { renderer.setSize(host.clientWidth, host.clientHeight); camera.aspect = host.clientWidth / host.clientHeight; camera.updateProjectionMatrix(); }); resize.observe(host);
+      document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(frame); else draw(); });
+    } catch (error) { const visual = document.querySelector('.ingredient-visual'), section = document.querySelector('.ingredient-section'), layers = [...document.querySelectorAll('.ingredient-fallback span')], sequence = [0, .14, .29, .44, .58, .72, .84], order = [6, 5, 4, 3, 2, 1, 0]; visual?.classList.add('no-webgl'); let pending = 0; const syncFallback = () => { pending = 0; const rect = section.getBoundingClientRect(), progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, section.offsetHeight - innerHeight))); layers.forEach((layer, index) => { const t = Math.max(0, Math.min(1, (progress - sequence[order[index]]) / .12)); layer.style.opacity = t; layer.style.transform = `translateY(${(1 - t) * -90}px) rotate(${(1 - t) * -4}deg)`; }); visual.classList.toggle('is-final', progress >= .96); }; const onFallbackScroll = () => { if (!pending) pending = requestAnimationFrame(syncFallback); }; addEventListener('scroll', onFallbackScroll, { passive: true }); addEventListener('resize', onFallbackScroll); syncFallback(); console.info('WebGL indisponível; usando ilustração alternativa.', error); }
+  

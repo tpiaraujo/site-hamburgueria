@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171512">
+  <meta name="description"
+    content="Brasa & Pão — hambúrguer artesanal feito na brasa. Confira o cardápio e peça pelo WhatsApp.">
+  <title>Brasa & Pão — hambúrguer de verdade</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  
+</head>
+
+<body>
+  <div id="intro-transition" class="intro-transition" role="dialog" aria-modal="true" aria-label="Abertura Brasa e Pão">
+    <button class="intro-skip" id="intro-skip" type="button">Pular abertura <span aria-hidden="true">↗</span></button>
+    <div class="intro-layout"><span class="intro-kicker">Brasa & Pão · feito na hora</span>
+      <div class="intro-burger" aria-hidden="true"><span class="intro-layer intro-bun-bottom"></span><span
+          class="intro-layer intro-patty"></span><span class="intro-layer intro-cheese"></span><span
+          class="intro-layer intro-tomato"></span><span class="intro-layer intro-lettuce"></span><span
+          class="intro-layer intro-bacon"></span><span class="intro-layer intro-bun-top"></span></div>
+      <figure class="intro-human"><video id="intro-video" muted playsinline preload="auto"
+          aria-label="Uma pessoa saboreia um hambúrguer">
+          <source src="assets/pessoa-comendo-hamburguer-pexels.mp4" type="video/mp4">
+        </video>
+        <figcaption>Feito pra primeira mordida.</figcaption><small class="intro-credit">Cena ilustrativa · Polina
+          Tankilevitch / Pexels</small>
+      </figure>
+      <div class="intro-status" aria-live="polite"><strong id="intro-message">Montando seu burger</strong><span>Carne na
+          brasa, ingredientes frescos e pão artesanal.</span>
+        <div class="intro-progress"></div>
+      </div>
+    </div>
+  </div>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#inicio" aria-label="Brasa e Pão, início"><span class="brand-mark"
+          aria-hidden="true">♨</span> brasa & pão<span style="color:var(--orange)">.</span></a>
+      <nav class="nav-links" aria-label="Navegação principal"><a href="#cardapio">Cardápio</a><a href="#casa">Nossa
+          casa</a><a href="#duvidas">Dúvidas</a></nav>
+      <a class="pill small" href="#cardapio">Pedir agora <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div><span class="eyebrow">Hambúrguer artesanal · desde 2018</span>
+          <h1 id="hero-title">Feito na brasa.<br><em>Feito pra você.</em></h1>
+          <p class="hero-copy">Pão macio, carne suculenta e aquele molho da casa. O tipo de hambúrguer que faz a semana
+            valer a pena.</p>
+          <div class="hero-actions"><a class="pill orange" href="#cardapio">Explorar cardápio <span
+                aria-hidden="true">↓</span></a><a class="pill ghost" href="#casa">Conheça a casa</a></div>
+          <div class="hero-note">
+  <svg class="chef-mascot" viewBox="0 0 48 48" aria-hidden="true">
+    <circle cx="24" cy="24" r="23" fill="#29251f" />
+    <circle cx="39" cy="9" r="4" fill="#c5f36b" />
+
+    <!-- Touca -->
+    <path d="M15 18a6 6 0 0 1 1-11 8 8 0 0 1 15 1 5 5 0 0 1 2 10v3H15z"
+      fill="#f7f0df" />
+    <path d="M16 17h17v5H16z" fill="#ff7138" />
+
+    <!-- Rosto e uniforme -->
+    <circle cx="24" cy="25" r="7" fill="#d99b68" />
+    <path d="M21 25h1m5 0h1" stroke="#38251c" stroke-width="1.5" stroke-linecap="round" />
+    <path d="M20 29h8l5 12H15z" fill="#f7f0df" />
+    <path d="M20 31h8l3 10H17z" fill="#ff7138" />
+
+    <!-- Braço e espátula -->
+    <path d="m30 32 5-5" stroke="#d99b68" stroke-width="4" stroke-linecap="round" />
+    <path d="m35 27 4-9 3 1-3 10z" fill="#c5c0b5" />
+    <path d="m38 18 1-4 3 1-1 4z" fill="#c5c0b5" />
+  </svg>
+
+  <span>Aberto hoje · 18h às 23h</span>
+</div>
+     
+          </div>
+        </div>
+        <div class="stage" aria-label="Hambúrguer artesanal com queijo, alface e tomate">
+          <div class="sun"></div>
+          <div class="orbit"></div>
+          <div class="dish"><img class="burger-photo"
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85"
+              alt="Hambúrguer artesanal suculento com queijo e vegetais" fetchpriority="high"></div>
+          <div class="badge" aria-hidden="true"><span><b>100%</b>na brasa<br>de verdade</span></div>
+          <div class="stage-label"><b>O clássico da casa</b>blend 180g · cheddar · molho brasa</div>
+        </div>
+      </div>
+    </section>
+    <div class="ticker" aria-label="Destaques da casa">
+      <div class="ticker-track">
+        <div class="ticker-group"><span class="ticker-item"><svg class="ticker-icon icon-meat" viewBox="0 0 32 32"
+              aria-hidden="true">
+              <path d="M5 12c1-5 7-8 13-7 6 1 10 5 9 10-1 6-7 12-13 12S4 23 5 18z" />
+              <path class="icon-line" d="M9 14c3-2 10-3 15 0M10 19c4-2 9-2 13 0" />
+              <circle class="icon-dot" cx="12" cy="11" r="1" />
+              <circle class="icon-dot" cx="21" cy="10" r="1" />
+            </svg><span>carne fresca</span></span><span class="ticker-item"><svg class="ticker-icon icon-bread"
+              viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M5 19c0-8 5-13 11-13s11 5 11 13v5H5z" />
+              <path class="icon-line" d="M11 12l2 3m5-5 1 4m3 1 1 3" />
+            </svg><span>pão artesanal</span></span><span class="ticker-item"><svg class="ticker-icon icon-time"
+              viewBox="0 0 32 32" aria-hidden="true">
+              <circle cx="16" cy="17" r="11" />
+              <path class="icon-line" d="M16 10v7l5 3M12 3h8" />
+            </svg><span>feito na hora</span></span><span class="ticker-item"><svg class="ticker-icon icon-sauce"
+              viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M12 4h8v5l3 3v14a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V12l3-3z" />
+              <path class="icon-line" d="M10 17h12" />
+              <path class="icon-drop" d="M16 18c-3 4-3 6 0 7 3-1 3-3 0-7z" />
+            </svg><span>molho da casa</span></span></div>
+        <div class="ticker-group" aria-hidden="true"><span class="ticker-item"><svg class="ticker-icon icon-meat"
+              viewBox="0 0 32 32">
+              <path d="M5 12c1-5 7-8 13-7 6 1 10 5 9 10-1 6-7 12-13 12S4 23 5 18z" />
+              <path class="icon-line" d="M9 14c3-2 10-3 15 0M10 19c4-2 9-2 13 0" />
+              <circle class="icon-dot" cx="12" cy="11" r="1" />
+              <circle class="icon-dot" cx="21" cy="10" r="1" />
+            </svg><span>carne fresca</span></span><span class="ticker-item"><svg class="ticker-icon icon-bread"
+              viewBox="0 0 32 32">
+              <path d="M5 19c0-8 5-13 11-13s11 5 11 13v5H5z" />
+              <path class="icon-line" d="M11 12l2 3m5-5 1 4m3 1 1 3" />
+            </svg><span>pão artesanal</span></span><span class="ticker-item"><svg class="ticker-icon icon-time"
+              viewBox="0 0 32 32">
+              <circle cx="16" cy="17" r="11" />
+              <path class="icon-line" d="M16 10v7l5 3M12 3h8" />
+            </svg><span>feito na hora</span></span><span class="ticker-item"><svg class="ticker-icon icon-sauce"
+              viewBox="0 0 32 32">
+              <path d="M12 4h8v5l3 3v14a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V12l3-3z" />
+              <path class="icon-line" d="M10 17h12" />
+              <path class="icon-drop" d="M16 18c-3 4-3 6 0 7 3-1 3-3 0-7z" />
+            </svg><span>molho da casa</span></span></div>
+      </div>
+    </div>
+    <section class="section menu-section" id="cardapio" aria-labelledby="menu-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="eyebrow">Escolha o seu favorito</span>
+            <h2 id="menu-title">Cardápio da casa</h2>
+          </div>
+          <p class="section-intro">Ingredientes de verdade, combinações sem complicação e muito sabor em cada mordida.
+          </p>
+        </div>
+        <div class="filters" role="group" aria-label="Filtrar itens do cardápio"><button class="filter"
+            aria-pressed="true" data-filter="todos">Tudo</button><button class="filter" aria-pressed="false"
+            data-filter="burgers">Burgers</button><button class="filter" aria-pressed="false"
+            data-filter="acompanhamentos">Acompanhamentos</button><button class="filter" aria-pressed="false"
+            data-filter="bebidas">Bebidas</button></div>
+        <div class="menu-grid" id="menu-grid" aria-live="polite"></div>
+        <p class="notice">* Preços e disponibilidade podem variar. Consulte a equipe para opções vegetarianas e
+          informações sobre alergênicos.</p>
+      </div>
+    </section>
+    <section class="section ingredient-section" aria-labelledby="ingredients-title">
+      <div class="wrap ingredient-layout">
+        <div class="ingredient-copy"><span class="eyebrow">Camada por camada</span>
+          <h2 id="ingredients-title">O ponto certo<br>faz a diferença.</h2>
+          <p>Role a página e veja cada ingrediente entrar no seu tempo.</p>
+          <ol class="ingredient-list">
+            <li><span>01</span><b>Pão artesanal</b><small>Macio por dentro, tostado por fora.</small></li>
+            <li><span>02</span><b>Carne fresca</b><small>Selada por fora, suculenta ao ponto.</small></li>
+            <li><span>03</span><b>Queijo derretido</b><small>Uma camada cremosa sobre a carne.</small></li>
+            <li><span>04</span><b>Tomate e alface</b><small>Fresquinhos e crocantes.</small></li>
+            <li><span>05</span><b>Molho da casa</b><small>O toque final da nossa receita.</small></li>
+          </ol>
+          <p class="pixel-note">No caminho também aparecem picles e refrigerante gelado.</p>
+        </div>
+        <div class="ingredient-visual" aria-hidden="true">
+          <div class="ingredient-glow"></div>
+          <div class="ingredient-canvas" id="ingredient-canvas"></div>
+          <div class="ingredient-fallback"><span class="fallback-bun-top"></span><span
+              class="fallback-sauce"></span><span class="fallback-tomato"></span><span
+              class="fallback-lettuce"></span><span class="fallback-cheese"></span><span
+              class="fallback-patty"></span><span class="fallback-bun-bottom"></span></div><svg class="person-scene"
+            viewBox="0 0 260 360" focusable="false">
+            <path class="person-shirt" d="M42 360 48 269q2-34 34-47l28-12h39l33 13q29 14 34 48l9 89z" />
+            <path class="person-neck" d="M106 194h52v49q-25 25-52 0z" />
+            <path class="person-arm" d="M206 283q-10-53-47-73l-52-20" />
+            <path class="person-face" d="M83 99q0-71 57-71t58 71v50q0 62-57 62t-58-62z" />
+            <path class="person-ear" d="M83 112q-24-6-20 20 3 18 22 18m112-38q24-6 20 20-3 18-22 18" />
+            <path class="person-hair"
+              d="M81 111q-12-53 15-82 18-20 48-20 39 0 57 28 11 18 4 54-12-23-29-33-26 15-70 13-4 23-25 40" />
+            <path class="person-eye" d="M111 131h2m48 0h2" />
+            <path class="person-smile" d="M119 161q20 14 39-1" />
+            <g class="person-burger">
+              <path d="M88 192q4-29 32-29t33 29z" />
+              <path d="M88 193h65l-7 9h-51z" />
+              <path d="M90 203h61v10H90z" />
+              <path d="M92 215h58q-4 18-29 18t-29-18" />
+            </g>
+          </svg><span class="ingredient-stamp">feito<br><b>na hora</b></span>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="casa" aria-labelledby="story-title">
+      <div class="wrap story">
+        <div class="story-visual"><img class="story-photo"
+            src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee?auto=format&fit=crop&w=1000&q=85"
+            alt="Ambiente acolhedor de uma hamburgueria artesanal" loading="lazy"></div>
+        <div class="story-copy"><span class="eyebrow">A gente acredita no simples bem feito</span>
+          <h2 id="story-title">Excelência, cuidado<br>e bons encontros.</h2>
+          <p>Tudo começou com uma chapa, uma receita de família e a vontade de reunir gente em volta da mesa. Hoje, cada
+            burger ainda sai da brasa no tempo certo — feito à mão, com ingredientes que a gente escolhe de perto.</p>
+          <p>Chega mais, pede o seu e fica à vontade. A casa é sua.</p>
+          <div class="stats">
+            <div class="stat"><b>2018</b><span>desde o primeiro burger</span></div>
+            <div class="stat"><b>100%</b><span>feito na hora</span></div>
+            <div class="stat"><b>1 missão</b><span>deixar seu dia melhor</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section faq-section" id="duvidas" aria-labelledby="faq-title">
+      <div class="wrap faq-layout">
+        <div><span class="eyebrow">Antes de pedir</span>
+          <h2 id="faq-title">Dúvidas<br>frequentes.</h2>
+          <p class="section-intro" style="margin-top:18px">Não encontrou o que procura? Chama a gente no WhatsApp, vamos
+            ajudar.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Como faço meu pedido?</summary>
+            <p>Escolha seus favoritos no cardápio e toque em “Pedir pelo WhatsApp”. A mensagem do pedido é preparada
+              para você enviar à nossa equipe e confirmar os detalhes.</p>
+          </details>
+          <details>
+            <summary>Vocês entregam na minha região?</summary>
+            <p>Consulte nossa equipe pelo WhatsApp para confirmar a área de entrega e as opções de retirada.</p>
+          </details>
+          <details>
+            <summary>Quais são os horários de funcionamento?</summary>
+            <p>Atendemos todos os dias, das 18h às 23h. Em feriados, confirme o horário atualizado com a equipe.</p>
+          </details>
+          <details>
+            <summary>Há opções vegetarianas ou para alergias?</summary>
+            <p>Fale com a gente antes de pedir. A equipe pode informar os ingredientes e as opções disponíveis no dia.
+              Como a cozinha manipula diferentes ingredientes, não podemos garantir ausência de traços.</p>
+          </details>
+          <details>
+            <summary>Quais formas de pagamento são aceitas?</summary>
+            <p>Consulte as formas de pagamento disponíveis diretamente com a equipe ao confirmar seu pedido.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <section class="contact" id="contato">
+      <div class="wrap contact-card">
+        <div><span class="eyebrow">Bateu a fome?</span>
+          <h2>Seu próximo burger<br>tá a uma mensagem.</h2>
+          <p>Fale com a equipe e faça seu pedido pelo WhatsApp.</p>
+        </div><a class="pill" data-whatsapp href="#" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp <span
+            aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-row"><a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">♨</span>
+        brasa & pão<span style="color:var(--orange)">.</span></a><span>Feito com carinho e para sua melhor experiência.
+        © <span id="year"></span></span><a href="#duvidas">Precisa de ajuda?</a></div>
+  </footer>
+  <a class="float-wa" data-whatsapp href="#" target="_blank" rel="noopener noreferrer"
+    aria-label="Conversar com a Brasa e Pão pelo WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true">
+      <path
+        d="M16 .4A15.5 15.5 0 0 0 2.7 23.8L.5 31.6l8-2.1A15.5 15.5 0 1 0 16 .4zm0 28.2c-2.4 0-4.7-.7-6.7-2l-.5-.3-4.8 1.3 1.3-4.7-.3-.5A12.7 12.7 0 1 1 16 28.6zm7-9.5c-.4-.2-2.3-1.1-2.7-1.2-.4-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.5-.2.3-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.3-2.2-2.7-.2-.4 0-.6.2-.8l.6-.7.4-.7c.1-.3 0-.5 0-.7l-1.2-2.9c-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.3-1.4 3.2s1.4 3.7 1.6 4c.2.3 2.8 4.3 6.8 6 .9.4 1.6.6 2.1.7.9.3 1.7.2 2.4.1.7-.1 2.3-.9 2.7-1.8.3-.9.3-1.7.2-1.8-.2-.2-.4-.3-.8-.5z" />
+    </svg></a>
+  <div class="mobile-order"><a class="pill orange" href="#cardapio">Ver cardápio e pedir <span
+        aria-hidden="true">↗</span></a></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  
+  
+  
+  <canvas id="scroll-energy" aria-hidden="true"></canvas>
+  
+  
+  <script type="module" src="JS/app.js"></script>
+  <script type="module" src="JS/menu.js"></script>
+  <script type="module" src="JS/animation.js"></script>
+  <script type="module" src="JS/intro.js"></script>
+  <script type="module" src="JS/scroll.js"></script>
+</body>
+
+</html>
