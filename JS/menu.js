@@ -1,9 +1,9 @@
 import { selectedItems } from './app.js';
 
 const items = [
-  { name: 'Brasa Clássico', category: 'burgers', photo: 'photo-1568901346375-23c9450c58cd', tag: 'O favorito', desc: 'Blend 180g, cheddar inglês, cebola na brasa e molho da casa.', price: 32.90 },
-  { name: 'Duplo Burguer', category: 'burgers', photo: 'photo-1553979459-d2229ba7433a', tag: 'Mais pedido', desc: 'Dois smash burgers, queijo derretido, picles e molho especial.', price: 38.90 },
-  { name: 'Bacon & Mel', category: 'burgers', photo: 'photo-1550547660-d9450f859349', tag: 'Agridoce', desc: 'Blend 180g, bacon crocante, queijo, mel picante e rúcula.', price: 36.90 },
+  { name: 'Brasa Clássico', category: 'burgers', photo: 'assets/smash-burguer.png', tag: 'O favorito', desc: 'Blend 180g, cheddar inglês, cebola na brasa e molho da casa.', price: 32.90 },
+  { name: 'Duplo Burguer', category: 'burgers', photo: 'assets/image.png', tag: 'Mais pedido', desc: 'Dois burgers na brasa, cheddar derretido, bacon crocante, alface e tomate.', price: 38.90 },
+  { name: 'Bacon & Mel', category: 'burgers', photo: 'assets/burguer-costela.png', tag: 'Agridoce', desc: 'Blend 180g, bacon crocante, queijo, mel picante e rúcula.', price: 36.90 },
   { name: 'Fritas da Casa', category: 'acompanhamentos', photo: 'photo-1573080496219-bb080dd4f877', tag: 'Pra dividir', desc: 'Batatas crocantes com páprica defumada e maionese de alho.', price: 18.90 },
   { name: 'Onion rings', category: 'acompanhamentos', photo: 'photo-1639024471283-03518883512d', tag: 'Crocante', desc: 'Anéis de cebola empanados na hora. Acompanha molho da casa.', price: 19.90 },
   { name: 'Milk-shake', category: 'bebidas', photo: 'photo-1572490122747-3968b75cc699', tag: 'Geladinho', desc: 'Cremoso, feito com sorvete de verdade. Consulte os sabores.', price: 18.90 }
@@ -19,7 +19,7 @@ function renderMenu(filter = 'todos') {
   grid.innerHTML = visible.map(item => `
     <article class="food-card">
       <div class="food-photo"><span class="tag">${item.tag}</span>
-        <span class="food-emoji" role="img" aria-label="${item.name}" style="background-image:url('https://images.unsplash.com/${item.photo}?auto=format&fit=crop&w=700&q=80')"></span>
+        <span class="food-emoji" role="img" aria-label="${item.name}" style="background-image:url('${item.photo.startsWith('assets/') ? item.photo : `https://images.unsplash.com/${item.photo}?auto=format&fit=crop&w=700&q=80`}')"></span>
       </div>
       <div class="food-info"><h3>${item.name}</h3><p>${item.desc}</p>
         <div class="food-bottom"><span class="price">${money(item.price)}</span>
